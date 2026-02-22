@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VastNova 文档</title>
+    <style>
+        /* 复用首页样式，添加文档特定样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0A0F1A;
+            color: #E5E9F0;
+            line-height: 1.6;
+        }
+        a {
+            color: #88C0D0;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: rgba(10, 15, 26, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2E3440;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #88C0D0, #B48EAD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            border: 1px solid #4C566A;
+            border-radius: 2rem;
+            padding: 0.2rem;
+        }
+        .lang-switch button {
+            background: none;
+            border: none;
+            color: #E5E9F0;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .lang-switch button.active {
+            background: #88C0D0;
+            color: #0A0F1A;
+        }
+        .btn {
+            background: #88C0D0;
+            color: #0A0F1A;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 500;
+        }
+        /* 文档内容样式 - 纯文本风格 */
+        .docs-content {
+            margin: 3rem 0;
+        }
+        .docs-content h1 {
+            font-size: 2.5rem;
+            margin: 2rem 0 1rem;
+            color: #88C0D0;
+            border-bottom: 1px solid #2E3440;
+            padding-bottom: 0.5rem;
+        }
+        .docs-content h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #B48EAD;
+        }
+        .docs-content h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.5rem;
+            color: #88C0D0;
+        }
+        .docs-content p {
+            margin: 1rem 0;
+            color: #D8DEE9;
+        }
+        .docs-content pre {
+            background: #1E232F;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            overflow-x: auto;
+            border: 1px solid #2E3440;
+            font-family: 'Fira Code', monospace;
+            margin: 1.5rem 0;
+        }
+        .docs-content code {
+            background: #1E232F;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.3rem;
+            font-family: 'Fira Code', monospace;
+            color: #B48EAD;
+        }
+        .docs-content ul, .docs-content ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        .docs-content blockquote {
+            border-left: 4px solid #88C0D0;
+            padding-left: 1rem;
+            color: #B0B7C5;
+            margin: 1rem 0;
+        }
+        .footer {
+            margin-top: 5rem;
+            padding: 3rem 0;
+            border-top: 1px solid #2E3440;
+            text-align: center;
+            color: #6B7380;
+        }
+        [data-lang="zh"], [data-lang="en"] {
+            display: none;
+        }
+        body.zh [data-lang="zh"] {
+            display: block;
+        }
+        body.zh [data-lang="zh"].inline {
+            display: inline;
+        }
+        body.en [data-lang="en"] {
+            display: block;
+        }
+        body.en [data-lang="en"].inline {
+            display: inline;
+        }
+        .inline {
+            display: inline;
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="zh">
+    <!-- 导航栏 (与首页相同) -->
+    <nav class="navbar">
+        <div class="logo">VastNova</div>
+        <div class="nav-links">
+            <a href="index.html" data-lang="zh">首页</a>
+            <a href="index.html" data-lang="en" class="inline">Home</a>
+            <a href="docs.html" data-lang="zh">文档</a>
+            <a href="docs.html" data-lang="en" class="inline">Docs</a>
+            <a href="https://github.com/sodous-s/vastnova" target="_blank">GitHub</a>
+            <div class="lang-switch">
+                <button class="active" onclick="switchLang('zh')">中文</button>
+                <button onclick="switchLang('en')">EN</button>
+            </div>
+            <a href="https://github.com/sodous-s/vastnova/releases" class="btn" data-lang="zh">下载</a>
+            <a href="https://github.com/sodous-s/vastnova/releases" class="btn" data-lang="en" class="inline">Download</a>
+        </div>
+    </nav>
+
+    <main class="container docs-content">
+        <!-- 中文文档内容 -->
+        <div data-lang="zh">
+            <h1>VastNova 语言参考</h1>
+            <p>版本 0 beta5 (2026.2.22)</p>
+
+            <h2>输出 <code>out</code></h2>
+            <pre><code>out "Hello"          # 输出字符串
+out 123              # 输出数字
+out a                # 输出变量值
+out "value =" a      # 混合输出</code></pre>
+
+            <h2>变量 <code>var</code></h2>
+            <pre><code>var a                # 声明变量（默认为空）
+var b = 10           # 声明并赋值
+var c = "text"
+var d = input "提示"  # 声明并从输入赋值</code></pre>
+
+            <h2>常量 <code>const</code></h2>
+            <pre><code>const PI = 3.14159   # 常量必须立即赋值且不可修改</code></pre>
+
+            <h2>输入 <code>input</code> / <code>in</code></h2>
+            <pre><code>var x
+x = input "请输入："   # 显示提示并读取输入
+in x                  # 简单输入（无提示），变量需已定义</code></pre>
+
+            <h2>赋值</h2>
+            <pre><code>a = 5                # 对已定义变量重新赋值
+b = a + 10           # 支持表达式
+c = input "新值："    # 从输入赋值</code></pre>
+
+            <h2>数学运算</h2>
+            <p>支持 <code>+</code> <code>-</code> <code>*</code> <code>/</code>，遵循先乘除后加减的优先级。</p>
+            <pre><code>var result = 10 + 5 * 2   # 结果为 20</code></pre>
+
+            <h2>条件判断 <code>if</code></h2>
+            <pre><code>if a > b {
+    out "a 大于 b"
+}
+if a == "admin" && b != 0 {
+    out "条件满足"
+}</code></pre>
+            <ul>
+                <li>比较运算符：<code>></code> <code>&lt;</code> <code>==</code> <code>!=</code></li>
+                <li>逻辑运算符：<code>&&</code> <code>||</code></li>
+                <li>字符串按字典序比较，数值按大小比较</li>
+                <li>花括号 <code>{ }</code> 必须配对，<code>{</code> 必须与 <code>if</code> 在同一行</li>
+            </ul>
+
+            <h2>注释</h2>
+            <pre><code>// 单行注释
+# 这也是单行注释
+!# 多行注释开始
+可以跨越多行
+直到遇到结束标记 #!</code></pre>
+
+            <h2>嵌入 C++ 项目</h2>
+            <p>将 <code>vastnova.h</code> 复制到项目目录，然后在代码中包含：</p>
+            <pre><code>#include "vastnova.h"
+#include &lt;iostream&gt;
+
+int main() {
+    vast(R"(
+        out "Hello, VastNova!"
+        var name = input "What's your name? "
+        out "Nice to meet you, " name
+    )");
+    return 0;
+}</code></pre>
+            <p>编译时需要 C++11 或更高版本。</p>
+
+            <h2>交互式命令行</h2>
+            <p>VastNova 提供了一个简单的交互式解释器示例（见 <code>main.cpp</code>），可逐行执行代码：</p>
+            <pre><code>$ ./vastnova
+Vastnova 0 beta4
+Welcome!
+
+>>> out "Hello"
+Hello
+>>> var a = 10
+>>> a = a * 2
+>>> out a
+20
+>>> exit
+goodbye!</code></pre>
+
+            <h2>运行脚本文件</h2>
+            <pre><code>$ ./vastnova script.vn</code></pre>
+
+            <h2>许可证</h2>
+            <p>MIT License</p>
+        </div>
+
+        <!-- 英文文档内容 -->
+        <div data-lang="en">
+            <h1>VastNova Language Reference</h1>
+            <p>Version 0 beta5 (2026.2.22)</p>
+
+            <h2>Output <code>out</code></h2>
+            <pre><code>out "Hello"          # output string
+out 123              # output number
+out a                # output variable value
+out "value =" a      # mixed output</code></pre>
+
+            <h2>Variable <code>var</code></h2>
+            <pre><code>var a                # declare variable (initially empty)
+var b = 10           # declare and assign
+var c = "text"
+var d = input "Prompt: "  # declare and assign from input</code></pre>
+
+            <h2>Constant <code>const</code></h2>
+            <pre><code>const PI = 3.14159   # constant must be assigned immediately and cannot be changed</code></pre>
+
+            <h2>Input <code>input</code> / <code>in</code></h2>
+            <pre><code>var x
+x = input "Enter: "  # show prompt and read input
+in x                  # simple input (no prompt), variable must already exist</code></pre>
+
+            <h2>Assignment</h2>
+            <pre><code>a = 5                # reassign existing variable
+b = a + 10           # expressions allowed
+c = input "New value: "  # assign from input</code></pre>
+
+            <h2>Arithmetic</h2>
+            <p>Supports <code>+</code> <code>-</code> <code>*</code> <code>/</code> with standard precedence (multiplication/division before addition/subtraction).</p>
+            <pre><code>var result = 10 + 5 * 2   # yields 20</code></pre>
+
+            <h2>Conditional <code>if</code></h2>
+            <pre><code>if a > b {
+    out "a is greater than b"
+}
+if a == "admin" && b != 0 {
+    out "condition satisfied"
+}</code></pre>
+            <ul>
+                <li>Comparison operators: <code>></code> <code>&lt;</code> <code>==</code> <code>!=</code></li>
+                <li>Logical operators: <code>&&</code> <code>||</code></li>
+                <li>Strings are compared lexicographically, numbers numerically</li>
+                <li>Braces <code>{ }</code> must be matched, <code>{</code> must be on the same line as <code>if</code></li>
+            </ul>
+
+            <h2>Comments</h2>
+            <pre><code>// single-line comment
+# also single-line comment
+!# multi-line comment start
+can span multiple lines
+until closing marker #!</code></pre>
+
+            <h2>Integration into C++</h2>
+            <p>Copy <code>vastnova.h</code> into your project directory, then include it:</p>
+            <pre><code>#include "vastnova.h"
+#include &lt;iostream&gt;
+
+int main() {
+    vast(R"(
+        out "Hello, VastNova!"
+        var name = input "What's your name? "
+        out "Nice to meet you, " name
+    )");
+    return 0;
+}</code></pre>
+            <p>Compile with C++11 or later.</p>
+
+            <h2>Interactive Command Line</h2>
+            <p>VastNova provides a simple interactive interpreter example (see <code>main.cpp</code>) that executes code line by line:</p>
+            <pre><code>$ ./vastnova
+Vastnova 0 beta4
+Welcome!
+
+>>> out "Hello"
+Hello
+>>> var a = 10
+>>> a = a * 2
+>>> out a
+20
+>>> exit
+goodbye!</code></pre>
+
+            <h2>Running Script Files</h2>
+            <pre><code>$ ./vastnova script.vn</code></pre>
+
+            <h2>License</h2>
+            <p>MIT License</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 VastNova. MIT License. <a href="https://github.com/sodous-s/vastnova">GitHub</a></p>
+    </footer>
+
+    <script>
+        function switchLang(lang) {
+            document.body.className = lang;
+            document.querySelectorAll('.lang-switch button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(lang)) {
+                    btn.classList.add('active');
+                } else if (lang === 'zh' && btn.textContent === '中文') {
+                    btn.classList.add('active');
+                } else if (lang === 'en' && btn.textContent === 'EN') {
+                    btn.classList.add('active');
+                }
+            });
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        (function initLang() {
+            const saved = localStorage.getItem('preferredLang');
+            if (saved) {
+                switchLang(saved);
+                return;
+            }
+            const browserLang = navigator.language || navigator.userLanguage;
+            if (browserLang.startsWith('zh')) {
+                switchLang('zh');
+            } else {
+                switchLang('en');
+            }
+        })();
+    </script>
+</body>
+</html>
