@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VastNova 文档</title>
     <style>
-        /* 复用首页样式，添加文档特定样式 */
         * {
             margin: 0;
             padding: 0;
@@ -49,6 +48,7 @@
             display: flex;
             gap: 2rem;
             align-items: center;
+            flex-wrap: wrap;
         }
         .lang-switch {
             display: flex;
@@ -77,7 +77,6 @@
             border-radius: 2rem;
             font-weight: 500;
         }
-        /* 文档内容样式 - 纯文本风格 */
         .docs-content {
             margin: 3rem 0;
         }
@@ -161,7 +160,6 @@
     </style>
 </head>
 <body class="zh">
-    <!-- 导航栏 (与首页相同) -->
     <nav class="navbar">
         <div class="logo">VastNova</div>
         <div class="nav-links">
@@ -180,16 +178,17 @@
     </nav>
 
     <main class="container docs-content">
-        <!-- 中文文档内容 -->
+        <!-- 中文文档 -->
         <div data-lang="zh">
             <h1>VastNova 语言参考</h1>
-            <p>版本 0 beta5 (2026.2.22)</p>
+            <p>版本 0 beta6 (2026.3.3)</p>
 
-            <h2>输出 <code>out</code></h2>
+            <h2>输出 <code>out</code> 与 <code>print</code></h2>
+            <p>两者功能完全相同，可互换使用。</p>
             <pre><code>out "Hello"          # 输出字符串
-out 123              # 输出数字
+print 123            # 输出数字
 out a                # 输出变量值
-out "value =" a      # 混合输出</code></pre>
+print "value =" a    # 混合输出</code></pre>
 
             <h2>变量 <code>var</code></h2>
             <pre><code>var a                # 声明变量（默认为空）
@@ -200,10 +199,12 @@ var d = input "提示"  # 声明并从输入赋值</code></pre>
             <h2>常量 <code>const</code></h2>
             <pre><code>const PI = 3.14159   # 常量必须立即赋值且不可修改</code></pre>
 
-            <h2>输入 <code>input</code> / <code>in</code></h2>
+            <h2>输入 <code>in</code> / <code>read</code> 与 <code>input</code></h2>
+            <p><code>in</code> 和 <code>read</code> 功能相同，均用于无提示输入；<code>input</code> 用于带提示输入。</p>
             <pre><code>var x
 x = input "请输入："   # 显示提示并读取输入
-in x                  # 简单输入（无提示），变量需已定义</code></pre>
+in x                  # 无提示输入，变量需已定义
+read x                # 同上</code></pre>
 
             <h2>赋值</h2>
             <pre><code>a = 5                # 对已定义变量重新赋值
@@ -242,9 +243,9 @@ if a == "admin" && b != 0 {
 
 int main() {
     vast(R"(
-        out "Hello, VastNova!"
+        print "Hello, VastNova!"
         var name = input "What's your name? "
-        out "Nice to meet you, " name
+        print "Nice to meet you, " name
     )");
     return 0;
 }</code></pre>
@@ -253,14 +254,14 @@ int main() {
             <h2>交互式命令行</h2>
             <p>VastNova 提供了一个简单的交互式解释器示例（见 <code>main.cpp</code>），可逐行执行代码：</p>
             <pre><code>$ ./vastnova
-Vastnova 0 beta4
+Vastnova 0 beta6
 Welcome!
 
->>> out "Hello"
+>>> print "Hello"
 Hello
 >>> var a = 10
 >>> a = a * 2
->>> out a
+>>> print a
 20
 >>> exit
 goodbye!</code></pre>
@@ -272,16 +273,17 @@ goodbye!</code></pre>
             <p>MIT License</p>
         </div>
 
-        <!-- 英文文档内容 -->
+        <!-- 英文文档 -->
         <div data-lang="en">
             <h1>VastNova Language Reference</h1>
-            <p>Version 0 beta5 (2026.2.22)</p>
+            <p>Version 0 beta6 (2026.3.3)</p>
 
-            <h2>Output <code>out</code></h2>
+            <h2>Output <code>out</code> and <code>print</code></h2>
+            <p>Both are interchangeable and have identical functionality.</p>
             <pre><code>out "Hello"          # output string
-out 123              # output number
+print 123            # output number
 out a                # output variable value
-out "value =" a      # mixed output</code></pre>
+print "value =" a    # mixed output</code></pre>
 
             <h2>Variable <code>var</code></h2>
             <pre><code>var a                # declare variable (initially empty)
@@ -292,10 +294,12 @@ var d = input "Prompt: "  # declare and assign from input</code></pre>
             <h2>Constant <code>const</code></h2>
             <pre><code>const PI = 3.14159   # constant must be assigned immediately and cannot be changed</code></pre>
 
-            <h2>Input <code>input</code> / <code>in</code></h2>
+            <h2>Input <code>in</code> / <code>read</code> and <code>input</code></h2>
+            <p><code>in</code> and <code>read</code> are equivalent (input without prompt); <code>input</code> displays a prompt.</p>
             <pre><code>var x
 x = input "Enter: "  # show prompt and read input
-in x                  # simple input (no prompt), variable must already exist</code></pre>
+in x                  # simple input (no prompt), variable must already exist
+read x                # same as in</code></pre>
 
             <h2>Assignment</h2>
             <pre><code>a = 5                # reassign existing variable
@@ -334,9 +338,9 @@ until closing marker #!</code></pre>
 
 int main() {
     vast(R"(
-        out "Hello, VastNova!"
+        print "Hello, VastNova!"
         var name = input "What's your name? "
-        out "Nice to meet you, " name
+        print "Nice to meet you, " name
     )");
     return 0;
 }</code></pre>
@@ -345,14 +349,14 @@ int main() {
             <h2>Interactive Command Line</h2>
             <p>VastNova provides a simple interactive interpreter example (see <code>main.cpp</code>) that executes code line by line:</p>
             <pre><code>$ ./vastnova
-Vastnova 0 beta4
+Vastnova 0 beta6
 Welcome!
 
->>> out "Hello"
+>>> print "Hello"
 Hello
 >>> var a = 10
 >>> a = a * 2
->>> out a
+>>> print a
 20
 >>> exit
 goodbye!</code></pre>
