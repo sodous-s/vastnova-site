@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VastNova - 轻量级脚本语言</title>
     <style>
-        /* 全局样式 */
         * {
             margin: 0;
             padding: 0;
@@ -29,7 +28,6 @@
             margin: 0 auto;
             padding: 0 2rem;
         }
-        /* 导航栏 */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -53,9 +51,7 @@
             display: flex;
             gap: 2rem;
             align-items: center;
-        }
-        .nav-links a {
-            color: #E5E9F0;
+            flex-wrap: wrap;
         }
         .lang-switch {
             display: flex;
@@ -97,7 +93,6 @@
             background: #88C0D0;
             color: #0A0F1A;
         }
-        /* Hero */
         .hero {
             text-align: center;
             padding: 5rem 0 3rem;
@@ -124,7 +119,6 @@
             gap: 1rem;
             justify-content: center;
         }
-        /* 特性卡片 */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -151,7 +145,6 @@
             margin-bottom: 0.8rem;
             color: #88C0D0;
         }
-        /* 代码区域 */
         .code-block {
             background: #1E232F;
             border-radius: 0.8rem;
@@ -170,7 +163,6 @@
             margin: 3rem 0 1.5rem;
             color: #ECEFF4;
         }
-        /* 语法速览 */
         .syntax-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -186,7 +178,6 @@
             color: #88C0D0;
             margin-bottom: 0.8rem;
         }
-        /* 页脚 */
         .footer {
             margin-top: 5rem;
             padding: 3rem 0;
@@ -200,7 +191,6 @@
             gap: 2rem;
             margin: 1.5rem 0;
         }
-        /* 响应式 */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -208,14 +198,12 @@
                 padding: 1rem;
             }
             .nav-links {
-                flex-wrap: wrap;
                 justify-content: center;
             }
             .hero h1 {
                 font-size: 3rem;
             }
         }
-        /* 语言隐藏 */
         [data-lang="zh"], [data-lang="en"] {
             display: none;
         }
@@ -231,14 +219,12 @@
         body.en [data-lang="en"].inline {
             display: inline;
         }
-        /* 工具类 */
         .inline {
             display: inline;
         }
     </style>
 </head>
 <body class="zh">
-    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="logo">VastNova</div>
         <div class="nav-links">
@@ -257,7 +243,6 @@
     </nav>
 
     <main class="container">
-        <!-- Hero 区域 -->
         <section class="hero">
             <h1>VastNova</h1>
             <div class="subtitle" data-lang="zh">轻量级、易嵌入的脚本语言</div>
@@ -272,7 +257,6 @@
             </div>
         </section>
 
-        <!-- 特性卡片 -->
         <h2 class="section-title" data-lang="zh">特性</h2>
         <h2 class="section-title" data-lang="en">Features</h2>
         <div class="features">
@@ -280,8 +264,8 @@
                 <div class="feature-icon">✨</div>
                 <div class="feature-title" data-lang="zh">极简语法</div>
                 <div class="feature-title" data-lang="en">Minimal Syntax</div>
-                <p data-lang="zh">仅包含 out, var, const, in, if 等关键字，易于学习。</p>
-                <p data-lang="en">Only out, var, const, in, if keywords, easy to learn.</p>
+                <p data-lang="zh">仅包含 out/print, var, const, in/read, if 等关键字，易于学习。</p>
+                <p data-lang="en">Only out/print, var, const, in/read, if keywords, easy to learn.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🔢</div>
@@ -308,8 +292,8 @@
                 <div class="feature-icon">⌨️</div>
                 <div class="feature-title" data-lang="zh">交互输入</div>
                 <div class="feature-title" data-lang="en">Interactive Input</div>
-                <p data-lang="zh">通过 input 或 in 获取用户输入。</p>
-                <p data-lang="en">Get user input via input or in commands.</p>
+                <p data-lang="zh">通过 input 或 in/read 获取用户输入。</p>
+                <p data-lang="en">Get user input via input or in/read commands.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📦</div>
@@ -320,14 +304,14 @@
             </div>
         </div>
 
-        <!-- 快速开始 -->
         <h2 class="section-title" id="quickstart" data-lang="zh">快速开始</h2>
         <h2 class="section-title" id="quickstart" data-lang="en">Quick Start</h2>
         <div class="code-block">
-            <pre><code>// Hello World 示例
-out "Hello, VastNova!"
+            <pre><code>// Hello World 示例 (使用 print 和 read)
+print "Hello, VastNova!"
 var name = input "What's your name? "
-out "Nice to meet you, " name</code></pre>
+read name   // 也可以使用 in name
+print "Nice to meet you, " name</code></pre>
         </div>
         <p data-lang="zh">将 vastnova.h 复制到项目，然后：</p>
         <p data-lang="en">Copy vastnova.h into your project, then:</p>
@@ -337,9 +321,9 @@ out "Nice to meet you, " name</code></pre>
 
 int main() {
     vast(R"(
-        out "Hello, VastNova!"
+        print "Hello, VastNova!"
         var name = input "What's your name? "
-        out "Nice to meet you, " name
+        print "Nice to meet you, " name
     )");
     return 0;
 }</code></pre>
@@ -347,30 +331,30 @@ int main() {
         <p data-lang="zh">编译：<code>g++ -std=c++11 main.cpp -o vastnova</code></p>
         <p data-lang="en">Compile: <code>g++ -std=c++11 main.cpp -o vastnova</code></p>
 
-        <!-- 语法速览 -->
         <h2 class="section-title" data-lang="zh">语法速览</h2>
         <h2 class="section-title" data-lang="en">Syntax Overview</h2>
         <div class="syntax-grid">
             <div class="syntax-item">
-                <h3>out</h3>
+                <h3>输出 (out/print)</h3>
                 <pre><code>out "Hello"
-out 123
+print 123
 out a
-out "value =" a</code></pre>
+print "value =" a</code></pre>
             </div>
             <div class="syntax-item">
-                <h3>var / const</h3>
+                <h3>变量 / 常量</h3>
                 <pre><code>var a
 var b = 10
 const PI = 3.14</code></pre>
             </div>
             <div class="syntax-item">
-                <h3>input / in</h3>
+                <h3>输入 (in/read / input)</h3>
                 <pre><code>x = input "Enter: "
-in x</code></pre>
+in x
+read x</code></pre>
             </div>
             <div class="syntax-item">
-                <h3>if</h3>
+                <h3>条件 if</h3>
                 <pre><code>if a > b {
     out "a > b"
 }
@@ -380,15 +364,14 @@ if a == "admin" && b != 0 {
             </div>
         </div>
 
-        <!-- 更新日志 -->
         <h2 class="section-title" data-lang="zh">更新日志</h2>
         <h2 class="section-title" data-lang="en">Version History</h2>
         <div class="code-block">
-            <p><strong>0 beta5</strong> (2026.2.22) - <span data-lang="zh">新增 if 语句及字符串比较支持</span><span data-lang="en">Added if statements and string comparison support</span></p>
+            <p><strong>0 beta6</strong> (2026.3.3) - <span data-lang="zh">新增 read 和 print 关键字，与原有的 out/in 完全兼容。</span><span data-lang="en">Added read and print keywords, fully compatible with existing out/in.</span></p>
+            <p><em>0 beta5</em> (2026.2.22) - <span data-lang="zh">新增 if 语句及字符串比较支持</span><span data-lang="en">Added if statements and string comparison support</span></p>
         </div>
     </main>
 
-    <!-- 页脚 -->
     <footer class="footer">
         <div class="footer-links">
             <a href="https://github.com/sodous-s/vastnova">GitHub</a>
@@ -401,10 +384,8 @@ if a == "admin" && b != 0 {
     </footer>
 
     <script>
-        // 语言切换函数
         function switchLang(lang) {
             document.body.className = lang;
-            // 更新按钮状态
             document.querySelectorAll('.lang-switch button').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.textContent.toLowerCase().includes(lang)) {
@@ -415,11 +396,9 @@ if a == "admin" && b != 0 {
                     btn.classList.add('active');
                 }
             });
-            // 可选的保存到 localStorage
             localStorage.setItem('preferredLang', lang);
         }
 
-        // 初始化语言：检测浏览器设置 + localStorage
         (function initLang() {
             const saved = localStorage.getItem('preferredLang');
             if (saved) {
@@ -430,7 +409,7 @@ if a == "admin" && b != 0 {
             if (browserLang.startsWith('zh')) {
                 switchLang('zh');
             } else {
-                switchLang('en'); // 默认英语
+                switchLang('en');
             }
         })();
     </script>
